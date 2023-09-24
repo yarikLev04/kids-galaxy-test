@@ -3,7 +3,10 @@ import axios from 'axios';
 import { useSession } from 'next-auth/react';
 
 const axiosInstance = axios.create({
-  baseURL: API.baseUrl
+  baseURL: API.baseUrl,
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8'
+  }
 });
 
 export const useAxiosInterceptors = () => {
