@@ -37,8 +37,7 @@ const SignInForm = () => {
       await signIn('credentials', {
         login: values.login,
         password: values.password,
-        redirect: false,
-        callbackUrl: baseAppUrl
+        redirect: true
       });
     }
   });
