@@ -1,6 +1,10 @@
 export async function getRules(): Promise<string> {
   const res = await fetch('http://46.101.221.8/rules', {
-    next: { revalidate: 3600 }
+    next: { revalidate: 3600 },
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json'
+    }
   });
 
   if (!res.ok) {

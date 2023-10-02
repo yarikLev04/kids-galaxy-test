@@ -1,51 +1,20 @@
-import { CloudLayout } from '@/components/CloudLayout';
-import { Stack, Typography } from '@mui/material';
+import { AboutUs } from '@/sections/main/MainSection/AboutUs';
+import { MainSection } from '@/sections/main/MainSection/MainSection';
+import { WhatWeDo } from '@/sections/main/MainSection/WhatWeDo';
+import { Stack } from '@mui/material';
+import gallery from '@/services/gallery';
+import React from 'react';
 
-export default function Home() {
+export default async function Home() {
+  const galleryPhotos = await gallery.getGalleryPhotos();
+
   return (
     <>
-      <CloudLayout>
-        <Stack sx={{ px: { xs: 4, md: 10, lg: 20 } }}>
-          <Typography variant={'h1'} fontWeight={700}>
-            A place of bright <br /> childhood
-          </Typography>
-        </Stack>
-      </CloudLayout>
-      <CloudLayout>
-        <Stack sx={{ px: { xs: 4, md: 10, lg: 20 } }}>
-          <Typography variant={'h1'} fontWeight={700}>
-            A place of bright <br /> childhood
-          </Typography>
-        </Stack>
-      </CloudLayout>
-      <CloudLayout>
-        <Stack sx={{ px: { xs: 4, md: 10, lg: 20 } }}>
-          <Typography variant={'h1'} fontWeight={700}>
-            A place of bright <br /> childhood
-          </Typography>
-        </Stack>
-      </CloudLayout>
-      <CloudLayout>
-        <Stack sx={{ px: { xs: 4, md: 10, lg: 20 } }}>
-          <Typography variant={'h1'} fontWeight={700}>
-            A place of bright <br /> childhood
-          </Typography>
-        </Stack>
-      </CloudLayout>
-      <CloudLayout>
-        <Stack sx={{ px: { xs: 4, md: 10, lg: 20 } }}>
-          <Typography variant={'h1'} fontWeight={700}>
-            A place of bright <br /> childhood
-          </Typography>
-        </Stack>
-      </CloudLayout>
-      <CloudLayout>
-        <Stack id={'about'} sx={{ px: { xs: 4, md: 10, lg: 20 } }}>
-          <Typography variant={'h1'} fontWeight={700}>
-            A place of bright <br /> childhood
-          </Typography>
-        </Stack>
-      </CloudLayout>
+      <Stack>
+        <MainSection photos={galleryPhotos} />
+        <AboutUs />
+        <WhatWeDo />
+      </Stack>
     </>
   );
 }

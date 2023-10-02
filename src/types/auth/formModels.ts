@@ -1,14 +1,14 @@
-export interface SignInFormState {
+export type SignInFormState = {
   login: string;
   password: string;
-}
+};
 
-export interface UpdatePasswordFormState {
+export type UpdatePasswordFormState = {
   oldPassword: string;
   newPassword: string;
   confirmPassword: string;
-}
+};
 
-export interface UpdateLoginFormState {
+export type UpdateLoginFormState = {
   login: string;
-}
+};

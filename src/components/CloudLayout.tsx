@@ -1,40 +1,32 @@
-import { Stack, Link as MUILink, SxProps } from '@mui/material';
-import Image from 'next/image';
+import Logo from '@/components/Logo';
+import { Link as MUILink, SxProps, Box } from '@mui/material';
 import Link from 'next/link';
 import { ReactNode } from 'react';
-import cloudImage from '../../public/cloud_background_1.svg';
 
 interface CloudLayoutProps {
+  withLogo?: boolean;
+  revertBackground?: boolean;
   children: ReactNode;
+  sxProps?: SxProps;
 }
 
-export function CloudLayout({ children }: CloudLayoutProps): JSX.Element {
+export function CloudLayout({ withLogo = true, revertBackground = false, children, sxProps }: CloudLayoutProps): JSX.Element {
   return (
-    <Stack
+    <Box
       sx={{
-        width: '100vw',
-        height: '100vh',
-        position: 'relative'
+        display: 'flex',
+        minHeight: '100vh',
+        background: `url(${!revertBackground ? '/cloud_background_1.svg' : '/cloud_background_2.svg'}) no-repeat center 15vh`,
+        backgroundSize: 'cover',
+        position: 'relative',
+        ...sxProps
       }}
+      maxWidth="xl"
     >
-      <MUILink sx={{ ml: { xs: 4, md: 10, lg: 20 }, mb: { md: 4, lg: 2 }, display: { xs: 'none', md: 'block' } }} component={Link} href="/">
-        <Image src="/logo.svg" style={{ pointerEvents: 'none' }} alt="logo" width="147" height="120" quality={100} priority={true}></Image>
+      <MUILink hidden={!withLogo} sx={{ position: 'absolute', left: '5vw', top: '5vh' }} component={Link} href="/">
+        <Logo />
       </MUILink>
-      <Image
-        src={cloudImage}
-        alt="cloud image"
-        sizes="100vw"
-        style={{
-          position: 'absolute',
-          width: '100vw',
-          height: '100vh',
-          objectFit: 'cover',
-          zIndex: -1,
-          objectPosition: '0 100px',
-          pointerEvents: 'none'
-        }}
-      />
       {children}
-    </Stack>
+    </Box>
   );
 }

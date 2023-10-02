@@ -1,7 +1,7 @@
 'use client';
 
-import customersService from '@/services/customersService';
-import { Appointment } from '@/types/customers/models';
+import appointmentsService from '@/services/appointmentsService';
+import { Appointment } from '@/types/appointment/models';
 import {
   Paper,
   Stack,
@@ -35,7 +35,7 @@ const CustomersTable = () => {
   }, [filter]);
 
   const getAppointments = async () => {
-    const { items, page, total_pages } = await customersService.getAppointments(
+    const { items, page, total_pages } = await appointmentsService.getAppointments(
       filter.currentPage + 1,
       filter.pageSize,
       filter.searchQuery
@@ -86,7 +86,7 @@ const CustomersTable = () => {
                     {apt.service_id} {apt.message}
                   </TableCell>
                   <TableCell align="center">
-                    {apt.date.toString()} {apt.time}
+                    {apt.date?.toString()} {apt.time}
                   </TableCell>
                   <TableCell align="center">{apt.people_amount}</TableCell>
                 </TableRow>

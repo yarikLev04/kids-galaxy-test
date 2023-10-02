@@ -1,9 +1,10 @@
 'use client';
 
+import { errorMessage } from '@/utils/formik';
 import React, { useState } from 'react';
 
 // MUI
-import { Button, Container, Grid, TextField } from '@mui/material';
+import { Button, Grid, TextField } from '@mui/material';
 
 // Formik and Yup
 import { Form, FormikProvider, useFormik } from 'formik';
@@ -34,24 +35,21 @@ const UpdatePasswordForm = () => {
   return (
     <FormikProvider value={formik}>
       <Form noValidate onSubmit={handleSubmit}>
-        <Container maxWidth="xs">
-          <Grid container justifyContent="center" spacing={2} mb={5}>
-            <Grid item xs={12}>
-              <TextField
-                size="small"
-                label="Login"
-                fullWidth
-                variant="filled"
-                {...getFieldProps('login')}
-                error={Boolean(touched.login && errors.login)}
-                helperText={touched.login && errors.login}
-              />
-            </Grid>
+        <Grid container justifyContent="center" spacing={2} mb={5}>
+          <Grid item xs={12}>
+            <TextField
+              size="small"
+              label="Login"
+              fullWidth
+              variant="filled"
+              {...getFieldProps('login')}
+              {...errorMessage(touched.login, errors.login)}
+            />
           </Grid>
-          <Button fullWidth variant="contained" type={'submit'}>
-            Save
-          </Button>
-        </Container>
+        </Grid>
+        <Button fullWidth variant="contained" type={'submit'}>
+          Save
+        </Button>
       </Form>
     </FormikProvider>
   );

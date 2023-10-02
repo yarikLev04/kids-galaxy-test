@@ -1,16 +1,9 @@
 import API from '@/config';
 import axios from 'axios';
-import * as https from 'https';
 import { useSession } from 'next-auth/react';
 
 const axiosInstance = axios.create({
-  baseURL: API.baseUrl,
-  headers: {
-    'Content-type': 'application/json; charset=UTF-8'
-  },
-  httpsAgent: new https.Agent({
-    rejectUnauthorized: false
-  })
+  baseURL: API.baseUrl
 });
 
 export const useAxiosInterceptors = () => {

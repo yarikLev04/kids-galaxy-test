@@ -1,10 +1,10 @@
 'use client';
 
-import { baseAppUrl } from '@/config';
+import { errorMessage } from '@/utils/formik';
 import React, { useState } from 'react';
 
 // MUI
-import { Button, Container, Grid, IconButton, InputAdornment, TextField } from '@mui/material';
+import { Button, Grid, IconButton, InputAdornment, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 // Formik and Yup
@@ -37,8 +37,8 @@ const SignInForm = () => {
       await signIn('credentials', {
         login: values.login,
         password: values.password,
-        redirect: true,
-        callbackUrl: baseAppUrl
+        redirect: false,
+        callbackUrl: '/'
       });
     }
   });
@@ -48,45 +48,41 @@ const SignInForm = () => {
   return (
     <FormikProvider value={formik}>
       <Form noValidate onSubmit={handleSubmit}>
-        <Container maxWidth="xs">
-          <Grid container justifyContent="center" spacing={2} mb={5}>
-            <Grid item xs={12}>
-              <TextField
-                size="small"
-                label="Login"
-                fullWidth
-                variant="filled"
-                {...getFieldProps('login')}
-                error={Boolean(touched.login && errors.login)}
-                helperText={touched.login && errors.login}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                size="small"
-                label="Password"
-                fullWidth
-                variant="filled"
-                {...getFieldProps('password')}
-                error={Boolean(touched.password && errors.password)}
-                helperText={touched.password && errors.password}
-                type={showPassword ? 'text' : 'password'}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton aria-label="toggle password visibility" onClick={handleShowPassword} edge="end">
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
-              />
-            </Grid>
+        <Grid container justifyContent="center" spacing={2} mb={5}>
+          <Grid item xs={12}>
+            <TextField
+              size="small"
+              label="Login"
+              fullWidth
+              variant="filled"
+              {...getFieldProps('login')}
+              {...errorMessage(touched.login, errors.login)}
+            />
           </Grid>
-          <Button fullWidth variant="contained" type="submit">
-            Save
-          </Button>
-        </Container>
+          <Grid item xs={12}>
+            <TextField
+              size="small"
+              label="Password"
+              fullWidth
+              variant="filled"
+              {...getFieldProps('password')}
+              {...errorMessage(touched.password, errors.password)}
+              type={showPassword ? 'text' : 'password'}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton aria-label="toggle password visibility" onClick={handleShowPassword} edge="end">
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}
+            />
+          </Grid>
+        </Grid>
+        <Button fullWidth variant="contained" type="submit">
+          Save
+        </Button>
       </Form>
     </FormikProvider>
   );

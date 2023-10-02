@@ -4,10 +4,10 @@ import Typography from '@mui/material/Typography';
 
 interface TruncateTextProps {
   text: string;
-  maxLength: number;
+  maxLength?: number;
 }
 
-const TruncateText = ({ text, maxLength }: TruncateTextProps) => {
+const TruncateText = ({ text, maxLength = 600 }: TruncateTextProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpand = () => {

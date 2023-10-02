@@ -5,7 +5,7 @@ import rocketSVG from '../../public/rocket.svg';
 
 const NotFound = () => {
   return (
-    <CloudLayout>
+    <CloudLayout sxProps={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <Stack height={'100%'} alignItems={'center'} spacing={2} justifyContent={'space-between'}>
         <Typography variant={'h1'}>404</Typography>
         <Typography variant={'h2'}>PAGE NOT FOUND</Typography>

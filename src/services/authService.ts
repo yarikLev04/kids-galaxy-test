@@ -10,7 +10,7 @@ const login = async (login: string, password: string): Promise<string | null> =>
   return accessToken;
 };
 
-const updateLogin = async (login: string, password: string): Promise<string | null> => {
+const updateLogin = async (login: string): Promise<string | null> => {
   const { data: accessToken } = await axiosInstance.put<string>('admin/login', { login });
 
   if (!accessToken) {
@@ -20,8 +20,8 @@ const updateLogin = async (login: string, password: string): Promise<string | nu
   return accessToken;
 };
 
-const updatePassword = async (login: string, password: string): Promise<string | null> => {
-  const { data: accessToken } = await axiosInstance.put<string>('admin/password', { login, password });
+const updatePassword = async (oldPassword: string, newPassword: string, confirmPassword: string): Promise<string | null> => {
+  const { data: accessToken } = await axiosInstance.put<string>('admin/password', { oldPassword, newPassword, confirmPassword });
 
   if (!accessToken) {
     return null;
@@ -32,7 +32,8 @@ const updatePassword = async (login: string, password: string): Promise<string |
 
 const authService = {
   login,
-  updateLogin
+  updateLogin,
+  updatePassword
 };
 
 export default authService;

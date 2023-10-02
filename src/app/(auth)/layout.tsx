@@ -1,3 +1,4 @@
+import { Container } from '@mui/material';
 import { ReactNode } from 'react';
 
 // Layout and Providers
@@ -12,5 +13,9 @@ export const metadata: Metadata = {
 };
 
 export default function AuthenticationLayout({ children }: { children: ReactNode }) {
-  return <CloudLayout>{children}</CloudLayout>;
+  return (
+    <CloudLayout sxProps={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <Container maxWidth={'xs'}>{children}</Container>
+    </CloudLayout>
+  );
 }

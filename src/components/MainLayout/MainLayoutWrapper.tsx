@@ -1,5 +1,5 @@
 import NavBar from '@/components/MainLayout/NavBar';
-import { Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { ReactNode } from 'react';
 
 interface MainLayoutProps {
@@ -10,7 +10,7 @@ const MainLayoutWrapper = ({ children }: MainLayoutProps) => {
   return (
     <Stack>
       <NavBar />
-      <div>{children}</div>
+      <Box>{children}</Box>
       <></>
     </Stack>
   );

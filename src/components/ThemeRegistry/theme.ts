@@ -66,6 +66,17 @@ const theme = createTheme({
           position: 'sticky'
         }
       }
+    },
+    MuiChip: {
+      styleOverrides: {
+        filledSecondary: {
+          backgroundColor: '#353945',
+          color: '#FCFCFD'
+        },
+        outlinedSecondary: {
+          border: 0
+        }
+      }
     }
   }
 });

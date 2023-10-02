@@ -1,5 +1,7 @@
 'use client';
 import { useAxiosInterceptors } from '@/utils/axiosInterceptors';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import * as React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,10 +13,12 @@ export default function ThemeRegistry({ children }: { children: React.ReactNode 
 
   return (
     <NextAppDirEmotionCacheProvider options={{ key: 'mui' }}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {children}
-      </ThemeProvider>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          {children}
+        </ThemeProvider>
+      </LocalizationProvider>
     </NextAppDirEmotionCacheProvider>
   );
 }

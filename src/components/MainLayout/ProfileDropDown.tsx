@@ -3,7 +3,7 @@ import { AccountCircle } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const ProfileDropDown = () => {
   const { status, data: session } = useSession();
